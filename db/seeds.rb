@@ -40,7 +40,7 @@ puts "start seeding"
 
 # puts "make entries"
 
-# Entry.create(user_id: 1, streamer_id: 1, status_id: 2, title: "Squid Game", show_type: "tvshow", poster_url: 'https://m.media-amazon.com/images/M/MV5BYWE3MDVkN2EtNjQ5MS00ZDQ4LTliNzYtMjc2YWMzMDEwMTA3XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_SX300.jpg', genre: 'Action, Drama, Mystery')
+Entry.create(user_id: 1, streamer_id: 1, status_id: 2, title: "Squid Game", show_type: "tvshow", poster_url: 'https://m.media-amazon.com/images/M/MV5BYWE3MDVkN2EtNjQ5MS00ZDQ4LTliNzYtMjc2YWMzMDEwMTA3XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_SX300.jpg', genre: 'Action, Drama, Mystery')
 Entry.create(user_id: 1, streamer_id: 6, status_id: 1, title: "Succession", show_type: "tvshow", poster_url: 'https://m.media-amazon.com/images/M/MV5BZDE0ODVlYjktNjJiMC00ODk4LWIwNTktMWRhZmZiOGFhYmUwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg', genre: 'Drama', rating: 9)
 
 # puts 'done with entries'

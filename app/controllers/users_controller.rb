@@ -12,9 +12,9 @@ class UsersController < ApplicationController
         render json: user
     end
 
-    def my_entries
+    def myentries
         user = User.find_by(id: session[:user_id])
-        entries = user.entries.order("created_at DESC")
+        entries = user.entries
         render json: entries
     end
 

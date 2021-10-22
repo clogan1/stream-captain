@@ -2,7 +2,7 @@ const initialEntries = {
     entries: []
   };
 
-  export function myCardsReducer(state = initialEntries, action) {
+  export function entriesReducer(state = initialEntries, action) {
     switch (action.type) {
       case "SET_MY_ENTRIES": {
         return {

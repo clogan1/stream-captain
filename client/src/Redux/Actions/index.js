@@ -34,7 +34,7 @@
       fetch(`/myentries`)
       .then(res => res.json())
       .then(entries =>{
-        dispatch( {type: "SET_MY_ENTRIES", payload: entries })
+        dispatch( {type: "SET_MY_ENTRIES", payload: entries})
       })
       }
   }

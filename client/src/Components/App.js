@@ -5,9 +5,14 @@ import MyDashboard from './Pages/MyDashboard'
 import AddEntry from './Pages/AddEntry'
 import Login from './Pages/Login'
 import MyHistory from './Pages/MyHistory'
+import { useSelector } from "react-redux";
 
 function App() {
+    const user = useSelector((state) => state.user.user);
 
+    console.log(user)
+
+  if(!user) return (<Login />)  
 
   return (
    <>
