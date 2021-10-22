@@ -28,6 +28,8 @@ function LoginForm() {
                 res.json().then(user => {
                     dispatch(logInUser(user))
                 })
+            } else{
+                res.json().then(err => setErrors(err.errors))
             }
         })
     }
@@ -54,6 +56,15 @@ function LoginForm() {
                 <br></br>
                 <button type="submit">log in</button>
             </form>
+            {(errors.length > 1) ?
+                errors.map(err => {
+                    return (
+                    <p>{err}</p>
+                    )
+                })
+            : 
+            null
+            }
         </Box>
     )
 }
