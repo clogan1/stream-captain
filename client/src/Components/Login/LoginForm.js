@@ -59,7 +59,7 @@ function LoginForm() {
             {(errors.length > 1) ?
                 errors.map(err => {
                     return (
-                    <p>{err}</p>
+                    <p key={err}>{err}</p>
                     )
                 })
             : 

@@ -1,4 +1,6 @@
 import {useState} from 'react'
+import { useDispatch } from "react-redux";
+import { signUpUser } from '../../Redux/Actions/index'
 import { 
     Box, 
     Typography 
@@ -6,16 +8,35 @@ import {
 
 function SignupForm() {
     const [username, setUsername] = useState('')
+    const [firstName, setFirstName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [errors, setErrors] = useState([])
+
+    const dispatch = useDispatch()
+
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log({
+        let newUser = {
             username: username,
+            first_name: firstName,
             email: email,
-            password: password
+            password: password,
+            password_confirmation: confirmPassword
+        }
+
+        fetch('/signup', { 
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify(newUser)
+        }).then(res => {
+            if(res.ok){
+                res.json().then(user => {
+                    dispatch(signUpUser(user))
+                })
+            } else(res.json().then(err => setErrors(err.errors)))
         })
     }
 
@@ -29,6 +50,14 @@ function SignupForm() {
                     name="username" 
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                />
+                <br></br>
+                <label>first name</label>
+                <input
+                    type="text"
+                    name="firstname" 
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                 />
                 <br></br>
                 <label>email</label>
@@ -57,6 +86,15 @@ function SignupForm() {
                 <br></br>
                 <button type="submit">sign up</button>
             </form>
+            {(errors.length > 1) ?
+                errors.map(err => {
+                    return (
+                    <p key={err}>{err}</p>
+                    )
+                })
+            : 
+            null
+            }
         </Box>
     )
 }

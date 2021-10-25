@@ -1,9 +1,16 @@
-import React from 'react'
+import { useDispatch } from "react-redux";
+import { logOutUser } from '../Redux/Actions/index';
 
 function NavBar() {
+    const dispatch = useDispatch()
+
+    function handleSignout(){
+        dispatch(logOutUser())
+    }
+
     return (
         <div>
-            NavBar  
+            <button onClick={handleSignout}>sign out</button>  
         </div>
     )
 }
