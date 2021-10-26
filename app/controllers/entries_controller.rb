@@ -1,5 +1,7 @@
 class EntriesController < ApplicationController
-
+    # def index
+    #     render json: Entry.all
+    # end
 
     def create
         entry = Entry.create!(entries_params)
@@ -22,6 +24,6 @@ class EntriesController < ApplicationController
     private
 
     def entries_params
-        params.permit(:user_id, :streamer_id, :status_id, :title, :show_type, :poster_url, :genre, :rating)
+        params.permit(:user_id, :streamer_id, :status_id, :title, :show_type, :poster_url, :genre, :rating, :imdb_id)
     end
 end

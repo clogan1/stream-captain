@@ -6,6 +6,6 @@ class Entry < ApplicationRecord
  
 
   validates :title, presence: true
-  validates :show_type, presence: true, inclusion: { in: ["tvshow", "movie", "other"]}
+  validates :show_type, presence: true
   validates :rating, numericality: { in: 1..10 }
 end

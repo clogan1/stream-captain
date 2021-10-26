@@ -56,7 +56,7 @@ function LoginForm() {
                 <br></br>
                 <button type="submit">log in</button>
             </form>
-            {(errors.length > 1) ?
+            {(errors.length > 0) ?
                 errors.map(err => {
                     return (
                     <p key={err}>{err}</p>
