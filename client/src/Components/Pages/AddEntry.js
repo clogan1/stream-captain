@@ -5,10 +5,12 @@ import { useState } from 'react'
 import nextId from "react-id-generator";
 
 
+
 function AddEntry() {
     const [search, setSearch] = useState('')
     const [searchArr, setSearchArr] = useState([])
-    const [openModel, setOpenModal] = useState(false)
+    const [openModal, setOpenModal] = useState(false)
+    const [newEntry, setNewEntry] = useState({})
 
     // console.log(searchArr)
     let newArr = []
@@ -26,19 +28,24 @@ function AddEntry() {
         .then(data => setSearchArr(data.Search))
     }
 
-    function handleOpenModal(){
+    function handleOpenModal(show){
+        setNewEntry(show)
         setOpenModal(true)
+    }
+
+    function handleCloseModal(){
+        setOpenModal(false)
     }
 
     return (
         <div>
-            Add Entry
             <Search search={search} setSearch={setSearch} handleSearchSubmit={handleSearchSubmit} />
             {(searchArr.length > 0) ?
-                 searchArr.map(item => <SearchCard key={nextId()}item={item}/>)  
+                 searchArr.map(item => <SearchCard key={nextId()} handleOpenModal={handleOpenModal} item={item}/>)  
                 :
                 null
             }
+            <AddModal openModal={openModal} setOpenModal={setOpenModal} show={newEntry}/>
         </div>
     )
 }

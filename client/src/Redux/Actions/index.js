@@ -66,3 +66,26 @@ export function addEntry(entry) {
       dispatch({ type: "DELETE_ENTRY", payload: entry})
     }
   }
+
+  // Streamers
+
+  export function getStreamers() {
+    return (dispatch, getState) => {
+      fetch('/streamers')
+        .then(res => res.json())
+        .then(streams => {
+          dispatch({ type: "SET_STREAMERS", payload: streams})
+        })
+    }
+  }
+
+  // Statuses
+  export function getStatuses() {
+    return (dispatch, getState) => {
+      fetch('/statuses')
+        .then(res => res.json())
+        .then(stats => {
+          dispatch({ type: "SET_STATUSES", payload: stats})
+        })
+    }
+  }

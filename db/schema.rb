@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_19_220806) do
+ActiveRecord::Schema.define(version: 2021_10_26_173415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_10_19_220806) do
     t.float "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "imdb_id"
     t.index ["status_id"], name: "index_entries_on_status_id"
     t.index ["streamer_id"], name: "index_entries_on_streamer_id"
     t.index ["user_id"], name: "index_entries_on_user_id"

@@ -8,7 +8,7 @@ import Login from './Pages/Login'
 import MyHistory from './Pages/MyHistory'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getLoggedInUser } from '../Redux/Actions/index';
+import { getLoggedInUser, getStatuses, getStreamers } from '../Redux/Actions/index';
 
 function App() {
     const user = useSelector((state) => state.user.user);
@@ -17,6 +17,8 @@ function App() {
 
     useEffect(()=>{
         dispatch(getLoggedInUser())
+        dispatch(getStreamers())
+        dispatch(getStatuses())
     }, [])
 
   if(!user) return (<Login />)  

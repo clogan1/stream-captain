@@ -8,7 +8,7 @@ import {
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
-function SearchCard( { item }) {
+function SearchCard( { item, handleOpenModal }) {
     
     const { Title, imdbID, Type, Poster} = item
 
@@ -26,7 +26,7 @@ function SearchCard( { item }) {
                 </Grid>
                 <Grid item xs={4}>
                     <Tooltip title="Add">
-                    <IconButton>
+                    <IconButton onClick={() => handleOpenModal(item)}>
                         <AddCircleIcon />
                     </IconButton>
                     </Tooltip>

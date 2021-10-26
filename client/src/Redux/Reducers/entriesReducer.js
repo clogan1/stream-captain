@@ -1,5 +1,7 @@
 const initialEntries = {
-    entries: []
+    entries: [],
+    streamers: [],
+    statuses: []
   };
 
   export function entriesReducer(state = initialEntries, action) {
@@ -44,6 +46,20 @@ const initialEntries = {
           ...state,
           entries: newEntries
           }
+      }
+
+      case "SET_STREAMERS": {
+        return {
+          ...state,
+          streamers: action.payload
+        }
+      }
+
+      case "SET_STATUSES": {
+        return {
+          ...state,
+          statuses: action.payload
+        }
       }
 
       default:
