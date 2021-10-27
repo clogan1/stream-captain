@@ -1,10 +1,17 @@
-import React from 'react'
+import { useSelector } from "react-redux";
+import { 
+    Container, 
+    Box, 
+    Typography
+} from '@mui/material';
 
 function MyDashboard() {
+    const user = useSelector((state) => state.user.user);
+
     return (
-        <div>
-            My Dashboard
-        </div>
+        <Container>
+            <Typography>hi {user.username}</Typography>
+        </Container>
     )
 }
 

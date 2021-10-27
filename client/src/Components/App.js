@@ -6,8 +6,7 @@ import MyDashboard from './Pages/MyDashboard'
 import AddEntry from './Pages/AddEntry'
 import Login from './Pages/Login'
 import MyHistory from './Pages/MyHistory'
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getLoggedInUser, getStatuses, getStreamers } from '../Redux/Actions/index';
 
 function App() {
