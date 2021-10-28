@@ -11,10 +11,21 @@ import {
 } from '@mui/material';
 import { useSelector } from "react-redux";
 import LogItem from '../MyHistory/LogItem'
+import EditModal from '../MyHistory/EditModal'
+import { useState } from 'react'
+
 
 
 function MyHistory() {
     const entries = useSelector((state) => state.entries.entries);
+    const [openModal, setOpenModal] = useState(false)
+    const [editEntry, setEditEntry] = useState({})
+
+
+    function handleOpenModal(show){
+        setEditEntry(show)
+        setOpenModal(true)
+    }
 
     return (
         <Container>
@@ -40,13 +51,16 @@ function MyHistory() {
                     </TableHead>
                     <TableBody>
                     {(entries.length > 0)?
-                        entries.map(entry => <LogItem key={entry.id} entry={entry}/>)
+                        entries.map(entry => <LogItem key={entry.id} entry={entry} handleOpenModal={handleOpenModal}/>)
                         :
                     null
                     }
                     </TableBody>
                 </Table>
             </TableContainer>
+
+            <EditModal openModal={openModal} setOpenModal={setOpenModal} editEntry={editEntry} />
+
         </Container>
     )
 }

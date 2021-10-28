@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { editEntry, deleteEntry} from '../../Redux/Actions/index'
 
 
-function LogItem( { entry }) {
+function LogItem( { entry, handleOpenModal }) {
     const { id, poster_url, show_type, status, title, streamer, created_at } = entry
     const dispatch = useDispatch()
 
@@ -26,6 +26,7 @@ function LogItem( { entry }) {
 
     function handleEditEntry(){
         console.log("hi - edit")
+        handleOpenModal(entry)
     }
 
     return (
