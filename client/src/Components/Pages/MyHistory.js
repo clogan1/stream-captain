@@ -19,7 +19,10 @@ import { useState } from 'react'
 function MyHistory() {
     const entries = useSelector((state) => state.entries.entries);
     const [openModal, setOpenModal] = useState(false)
-    const [editEntry, setEditEntry] = useState({})
+    const [editEntry, setEditEntry] = useState({
+        streamer: {id: "placeholder"},
+        status: {id: "placeholder"}
+    })
 
 
     function handleOpenModal(show){

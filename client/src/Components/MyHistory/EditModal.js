@@ -1,12 +1,14 @@
 import React from 'react'
 import CloseIcon from '@mui/icons-material/Close';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
     Box,
     Typography,
     IconButton,
     Modal
 } from '@mui/material';
+import { useDispatch, useSelector } from "react-redux";
+import { updateEntry } from '../../Redux/Actions/index'
 
 const style = {
     position: 'absolute',
@@ -22,8 +24,41 @@ const style = {
 
 
 function EditModal( { openModal, setOpenModal, editEntry }) {
+    const user = useSelector((state) => state.user.user);
+    const streamers = useSelector((state) => state.entries.streamers)
+    const statuses = useSelector((state) => state.entries.statuses);
 
-    console.log(editEntry)
+    const dispatch = useDispatch()
+
+    const [statusId, setStatusId] = useState(editEntry.status.id)
+    const [streamerId, setStreamerId] = useState(editEntry.streamer.id)
+    const [errors, setErrors] = useState([])
+    
+    function handleEditSubmit(e){
+        e.preventDefault()
+
+        const updatedEntry = {
+            streamer_id: parseInt(streamerId),
+            status_id: parseInt(statusId),
+        }
+
+        fetch(`/entries/${editEntry.id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify(updatedEntry)
+        }).then(res => {
+            if(res.ok){
+                res.json().then(entry => dispatch(updateEntry(entry)))
+                setOpenModal(false)
+            } else{
+                res.json().then(err => setErrors(err.errors))
+            }
+        })
+
+        setStatusId('')
+        setStreamerId('')
+    }
+  
     
     return (
         <Modal
@@ -35,6 +70,45 @@ function EditModal( { openModal, setOpenModal, editEntry }) {
                 <CloseIcon />
             </IconButton>
             <br></br> 
+            <img src={editEntry.poster_url} style={{width: '100px'}} />
+            <Typography>{editEntry.title}</Typography>
+            <form onSubmit={handleEditSubmit}>
+                <select
+                name="streamer"
+                value={streamerId}
+                onChange={(e)=>setStreamerId(e.target.value)}
+                >
+                    <option value="0">select a streamer</option>
+                    {streamers.map(stream => (<option key={stream.id} value={stream.id} >{stream.name}</option>))
+                    }
+                </select>
+                <br></br>
+                {statuses.map(status => {
+                    return(
+                        <label key={status.id}>
+                            <input 
+                                type="radio"
+                                name="statusname"
+                                id={status.name}
+                                value={status.id}
+                                onChange={(e) => setStatusId(e.target.value)}
+                            />{status.name}
+                            </label>
+                    )
+                })}
+                <br></br>
+                <button type="submit">update</button>
+            </form>
+                {(errors.length > 0)? 
+                    errors.map(err => {
+                    return (
+                    <p key={err}>{err}</p>
+                        )
+                    })
+                    :
+                    null
+                }
+
         </Box>
       </Modal>
     )

@@ -25,7 +25,6 @@ function LogItem( { entry, handleOpenModal }) {
     }
 
     function handleEditEntry(){
-        console.log("hi - edit")
         handleOpenModal(entry)
     }
 

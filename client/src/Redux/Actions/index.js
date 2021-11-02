@@ -55,7 +55,7 @@ export function addEntry(entry) {
     }
   }
 
-  export function editEntry(entry) {
+  export function updateEntry(entry) {
     return (dispatch, getState) => {
       dispatch({ type: "EDIT_ENTRY", payload: entry})
     }

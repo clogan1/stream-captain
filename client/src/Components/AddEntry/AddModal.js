@@ -50,6 +50,8 @@ function AddModal( { setOpenModal, openModal, show} ) {
             rating: rating,
         }
 
+        console.log(newEntry)
+
         fetch('/entries', {
             method: 'POST',
             headers: {'content-type': 'application/json'},

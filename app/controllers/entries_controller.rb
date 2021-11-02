@@ -9,7 +9,7 @@ class EntriesController < ApplicationController
 
     end
 
-    def updated
+    def update
         entry = Entry.find(params[:id])
         entry.update!(entries_params)
         render json: entry, status: :accepted
