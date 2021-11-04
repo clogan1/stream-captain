@@ -23,24 +23,25 @@ const style = {
   };
 
 
-function EditModal( { openModal, setOpenModal, editEntry }) {
+function EditModal( { openModal, setOpenModal, editEntry, editStatusId, editStreamerId }) {
     const user = useSelector((state) => state.user.user);
     const streamers = useSelector((state) => state.entries.streamers)
     const statuses = useSelector((state) => state.entries.statuses);
 
     const dispatch = useDispatch()
 
-    const [statusId, setStatusId] = useState(editEntry.status.id)
-    const [streamerId, setStreamerId] = useState(editEntry.streamer.id)
+    const [statusId, setStatusId] = useState(editStatusId)
+    const [streamerId, setStreamerId] = useState(editStreamerId)
     const [errors, setErrors] = useState([])
     
     function handleEditSubmit(e){
         e.preventDefault()
 
         const updatedEntry = {
-            streamer_id: parseInt(streamerId),
+            streamer_id: streamerId,
             status_id: parseInt(statusId),
         }
+
 
         fetch(`/entries/${editEntry.id}`, {
             method: 'PATCH',
@@ -63,7 +64,10 @@ function EditModal( { openModal, setOpenModal, editEntry }) {
     return (
         <Modal
             open={openModal}
-            onClose={() => setOpenModal(false)}
+            onClose={() => {
+                    setOpenModal(false)
+                    setErrors([])
+                }}
         >
         <Box sx={style}>
             <IconButton onClick={()=>setOpenModal(false)}>

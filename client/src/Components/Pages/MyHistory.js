@@ -23,10 +23,15 @@ function MyHistory() {
         streamer: {id: "placeholder"},
         status: {id: "placeholder"}
     })
+    const [editStreamerId, setEditStreamerId] = useState('')
+    const [editStatusId, setEditStatusId] = useState('')
+
 
 
     function handleOpenModal(show){
         setEditEntry(show)
+        setEditStreamerId(editEntry.streamer.id)
+        setEditStatusId(editEntry.status.id)
         setOpenModal(true)
     }
 
@@ -62,7 +67,7 @@ function MyHistory() {
                 </Table>
             </TableContainer>
 
-            <EditModal openModal={openModal} setOpenModal={setOpenModal} editEntry={editEntry} />
+            <EditModal openModal={openModal} setOpenModal={setOpenModal} editEntry={editEntry} editStreamerId={editStreamerId} editStatusId={editStatusId}/>
 
         </Container>
     )
