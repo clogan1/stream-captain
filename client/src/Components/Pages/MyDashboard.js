@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
 import { 
     Container, 
-    Box, 
     Typography
 } from '@mui/material';
+import Charts from '../MyDashboard/Charts'
+
 
 function MyDashboard() {
     const user = useSelector((state) => state.user.user);
@@ -11,6 +12,7 @@ function MyDashboard() {
     return (
         <Container>
             <Typography>hi {user.username}</Typography>
+            <Charts />
         </Container>
     )
 }
