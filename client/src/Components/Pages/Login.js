@@ -15,7 +15,7 @@ function Login() {
         <Container>
             <Box>
                 <p>[logo placeholder]</p>
-                <h3>Stream Captain</h3>
+                <h1 className="logotext">Stream Captain</h1>
                 <ol>
                     <li>log streaming activity</li>
                     <li>visualize your trends</li>
