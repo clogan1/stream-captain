@@ -13,6 +13,8 @@ import { useSelector } from "react-redux";
 import LogItem from '../MyHistory/LogItem'
 import EditModal from '../MyHistory/EditModal'
 import { useState } from 'react'
+import Filter from '../MyHistory/Filter'
+import Sort from '../MyHistory/Sort'
 
 
 
@@ -25,6 +27,8 @@ function MyHistory() {
     })
     const [editStreamerId, setEditStreamerId] = useState('')
     const [editStatusId, setEditStatusId] = useState('')
+    const [sort, setSort] = useState('default')
+    const [filter, setFilter] = useState('')
 
 
 
@@ -42,7 +46,8 @@ function MyHistory() {
                 <Typography>your history</Typography>
                 </Box>
                 <Box> 
-                    <Typography> filter | sort  </Typography>
+
+                    <Sort setSort={setSort}/>
                 </Box>
             </Box>
             <TableContainer>

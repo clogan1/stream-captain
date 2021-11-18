@@ -18,6 +18,12 @@ class UsersController < ApplicationController
         render json: entries
     end
 
+    def myentriesoldest
+        user = User.find_by(id: session[:user_id])
+        entries = user.entries.order("created_at DESC")
+        render json: entries
+    end
+
     private
     def user_params
         params.permit(:username, :email, :first_name, :avatar_url, :password, :password_confirmation)

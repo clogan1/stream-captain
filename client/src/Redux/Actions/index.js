@@ -67,6 +67,26 @@ export function addEntry(entry) {
     }
   }
 
+  export function entriesOldest(){
+    return(dispatch, getState) => {
+      fetch(`/myentries_oldest`)
+      .then(res => res.json())
+      .then(entries =>{
+        dispatch( {type: "GET_ENTRIES_OLDEST", payload: entries})
+      })
+    }
+  }
+
+  export function entriesNewest(){
+    return(dispatch, getState) => {
+      fetch(`/myentries`)
+      .then(res => res.json())
+      .then(entries =>{
+        dispatch( {type: "SET_MY_ENTRIES", payload: entries})
+      })
+    }
+  }
+
   // Streamers
 
   export function getStreamers() {

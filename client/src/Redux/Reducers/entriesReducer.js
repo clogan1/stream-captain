@@ -13,6 +13,13 @@ const initialEntries = {
         }
       }
 
+      case "GET_ENTRIES_OLDEST": {
+        return {
+          ...state,
+          entries: action.payload
+        }
+      }
+
       case "CLEAR_ENTRIES": {
         return {
           ...state,
